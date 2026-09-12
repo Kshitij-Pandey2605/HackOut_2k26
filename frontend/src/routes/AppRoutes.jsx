@@ -1,0 +1,84 @@
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
+// Layouts
+import { MainLayout } from '@/layouts/MainLayout';
+import { AuthLayout } from '@/layouts/AuthLayout';
+import { DashboardLayout } from '@/layouts/DashboardLayout';
+
+// Guards
+import { ProtectedRoute } from '@/routes/ProtectedRoute';
+import { RoleRoute } from '@/routes/RoleRoute';
+import { USER_ROLES } from '@/constants/roles';
+
+// Pages
+import LandingPage from '@/features/landing/pages/LandingPage';
+import RoleSelectionPage from '@/features/role-selection/pages/RoleSelectionPage';
+import LoginPage from '@/features/auth/pages/LoginPage';
+import SignupPage from '@/features/auth/pages/SignupPage';
+import ForgotPasswordPage from '@/features/auth/pages/ForgotPasswordPage';
+import SupplierDashboardPage from '@/features/supplier/pages/SupplierDashboardPage';
+import BuyerDashboardPage from '@/features/buyer/pages/BuyerDashboardPage';
+import MatchingEnginePage from '@/features/matching-engine/pages/MatchingEnginePage';
+import OpportunityEnginePage from '@/features/opportunity-engine/pages/OpportunityEnginePage';
+import MarketplacePage from '@/features/marketplace/pages/MarketplacePage';
+import DigitalTwinPage from '@/features/digital-twin/pages/DigitalTwinPage';
+import SustainabilityPage from '@/features/sustainability/pages/SustainabilityPage';
+import TrustVerificationPage from '@/features/trust-verification/pages/TrustVerificationPage';
+import TransactionsPage from '@/features/transactions/pages/TransactionsPage';
+import NotificationsPage from '@/features/notifications/pages/NotificationsPage';
+import AdminDashboardPage from '@/features/admin/pages/AdminDashboardPage';
+import SettingsPage from '@/features/settings/pages/SettingsPage';
+
+export const AppRoutes = () => {
+  return (
+    <Routes>
+      {/* 1. Public Marketing & Onboarding */}
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/role-selection" element={<RoleSelectionPage />} />
+      </Route>
+
+      {/* 2. Authentication Flow */}
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      </Route>
+
+      {/* 3. Authenticated App Workspaces */}
+      <Route element={<ProtectedRoute />}>
+        <Route element={<DashboardLayout />}>
+          {/* Supplier Specific Routes */}
+          <Route element={<RoleRoute allowedRoles={[USER_ROLES.SUPPLIER, USER_ROLES.ADMIN]} />}>
+            <Route path="/supplier/dashboard" element={<SupplierDashboardPage />} />
+          </Route>
+
+          {/* Buyer Specific Routes */}
+          <Route element={<RoleRoute allowedRoles={[USER_ROLES.BUYER, USER_ROLES.ADMIN]} />}>
+            <Route path="/buyer/dashboard" element={<BuyerDashboardPage />} />
+          </Route>
+
+          {/* Admin Specific Routes */}
+          <Route element={<RoleRoute allowedRoles={[USER_ROLES.ADMIN]} />}>
+            <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          </Route>
+
+          {/* Shared Ecosystem Features */}
+          <Route path="/marketplace" element={<MarketplacePage />} />
+          <Route path="/matching-engine" element={<MatchingEnginePage />} />
+          <Route path="/opportunity-engine" element={<OpportunityEnginePage />} />
+          <Route path="/digital-twin" element={<DigitalTwinPage />} />
+          <Route path="/sustainability" element={<SustainabilityPage />} />
+          <Route path="/trust-verification" element={<TrustVerificationPage />} />
+          <Route path="/transactions" element={<TransactionsPage />} />
+          <Route path="/notifications" element={<NotificationsPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Route>
+      </Route>
+
+      {/* Catch-all fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+};
