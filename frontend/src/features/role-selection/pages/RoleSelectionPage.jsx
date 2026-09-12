@@ -21,7 +21,7 @@ export const RoleSelectionPage = () => {
       badge: 'Capture & Sequestration',
       description: 'Industrial emitters, biochar producers, DAC facilities, and agro-forestry carbon projects seeking to list & monetize verified credits.',
       icon: Factory,
-      route: '/supplier/dashboard',
+      route: '/supplier/onboarding',
       color: 'border-eco-emerald hover:border-eco-emerald',
     },
     {
