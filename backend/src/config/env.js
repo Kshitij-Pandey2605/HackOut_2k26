@@ -15,17 +15,28 @@ export const env = {
   },
 
   JWT: {
-    SECRET: process.env.JWT_SECRET || 'default_jwt_secret_dev_only',
-    EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d'
+    SECRET: process.env.JWT_SECRET || 'carbonsphere_jwt_secret_dev_key_32_chars_min',
+    EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
+    COOKIE_EXPIRES_IN_DAYS: process.env.JWT_COOKIE_EXPIRES_IN_DAYS || 7
   },
 
-  CLOUDINARY: {
-    CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME || '',
-    API_KEY: process.env.CLOUDINARY_API_KEY || '',
-    API_SECRET: process.env.CLOUDINARY_API_SECRET || ''
+  GOOGLE: {
+    CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+    CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || ''
   },
 
-  GOOGLE_MAPS: {
-    API_KEY: process.env.GOOGLE_MAPS_API_KEY || ''
+  SMTP: {
+    HOST: process.env.SMTP_HOST || '',
+    PORT: parseInt(process.env.SMTP_PORT || '587', 10),
+    SECURE: process.env.SMTP_SECURE === 'true',
+    USER: process.env.SMTP_USER || '',
+    PASS: process.env.SMTP_PASS || '',
+    FROM: process.env.EMAIL_FROM || 'CarbonSphere <no-reply@carbonsphere.io>'
+  },
+
+  RATE_LIMIT: {
+    WINDOW_MS: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10), // 15 mins
+    MAX_REQUESTS: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100', 10),
+    AUTH_MAX_REQUESTS: parseInt(process.env.AUTH_RATE_LIMIT_MAX_REQUESTS || '10', 10)
   }
 };
