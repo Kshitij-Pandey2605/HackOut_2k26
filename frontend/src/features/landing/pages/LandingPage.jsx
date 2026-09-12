@@ -42,7 +42,7 @@ export const LandingPage = () => {
     {
       company: 'Tata Steel',
       logoType: 'tata',
-      quote: 'CarbonX has helped us find reliable buyers for our captured carbon, creating new revenue streams and reducing our environmental impact.',
+      quote: 'CarbonSphere has helped us find reliable buyers for our captured carbon, creating new revenue streams and reducing our environmental impact.',
       author: 'R. Sharma',
       role: 'Sustainability Head, Tata Steel',
     },
@@ -56,7 +56,7 @@ export const LandingPage = () => {
     {
       company: 'Linde',
       logoType: 'linde',
-      quote: 'CarbonX is building the infrastructure for a circular carbon economy. This is the future we need.',
+      quote: 'CarbonSphere is building the infrastructure for a circular carbon economy. This is the future we need.',
       author: 'Dr. K. Müller',
       role: 'VP Sustainability, Linde',
     }
@@ -862,7 +862,7 @@ export const LandingPage = () => {
 
 
       {/* ========================================================================= */}
-      {/* 10. CALL TO ACTION BANNER: JOIN CARBONX TODAY                             */}
+      {/* 10. CALL TO ACTION BANNER: JOIN CARBONSPHERE TODAY                        */}
       {/* ========================================================================= */}
       <section className="px-6 pb-20 max-w-7xl mx-auto">
         <div className="bg-[#eaf5ef] rounded-3xl p-8 sm:p-12 border border-[#d2ecd9] relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-8 shadow-sm">
@@ -870,7 +870,7 @@ export const LandingPage = () => {
           <div className="space-y-2 relative z-10">
             <span className="text-xs uppercase font-bold tracking-wider text-[#0e6245]">READY TO MAKE A DIFFERENCE?</span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Join CarbonX Today
+              Join CarbonSphere Today
             </h2>
             <p className="text-xs sm:text-sm text-slate-600">
               Be part of a global movement turning carbon into opportunities.
@@ -913,7 +913,7 @@ export const LandingPage = () => {
                   <Leaf className="w-4 h-4 fill-current" />
                 </div>
                 <span className="text-xl font-black text-white tracking-tight">
-                  Carbon<span className="text-[#10b981]">X</span>
+                  Carbon<span className="text-[#10b981]">Sphere</span>
                 </span>
               </div>
               <p className="text-xs text-emerald-100/60 max-w-sm">
@@ -975,7 +975,7 @@ export const LandingPage = () => {
 
           {/* Bottom copyright row */}
           <div className="border-t border-emerald-950/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
-            <p>© 2025 CarbonX. All rights reserved.</p>
+            <p>© 2025 CarbonSphere. All rights reserved.</p>
             <p className="flex items-center gap-1.5 text-emerald-500/80">
               Together for a Cleaner, Greener Tomorrow 🌿
             </p>
