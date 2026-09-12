@@ -47,15 +47,12 @@ export const AppRoutes = () => {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/supplier/onboarding" element={<SupplierOnboardingPage />} />
         <Route path="/onboarding/supplier" element={<SupplierOnboardingPage />} />
+        <Route path="/supplier/dashboard" element={<SupplierDashboardPage />} />
       </Route>
 
       {/* 3. Authenticated App Workspaces */}
       <Route element={<ProtectedRoute />}>
         <Route element={<DashboardLayout />}>
-          {/* Supplier Specific Routes */}
-          <Route element={<RoleRoute allowedRoles={[USER_ROLES.SUPPLIER, USER_ROLES.ADMIN]} />}>
-            <Route path="/supplier/dashboard" element={<SupplierDashboardPage />} />
-          </Route>
 
           {/* Buyer Specific Routes */}
           <Route element={<RoleRoute allowedRoles={[USER_ROLES.BUYER, USER_ROLES.ADMIN]} />}>
