@@ -18,23 +18,65 @@ import {
 import { useAuth } from '@/context/AuthContext';
 import { USER_ROLES } from '@/constants/roles';
 
+import { authService } from '@/services/api/authService';
+import { triggerGoogleAuth } from '@/utils/googleAuth';
+import { AlertCircle } from 'lucide-react';
+
 // Photographic background matching the reference photo
 import loginBg from '@/assets/login-clean-bg.jpg';
 
 export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [apiError, setApiError] = useState(null);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const handleGoogleLogin = () => {
+    setApiError(null);
+    triggerGoogleAuth({
+      role: 'supplier',
+      onSuccess: (user, token) => {
+        const roleUpper = (user?.role || 'supplier').toUpperCase();
+        login(user, token, roleUpper);
+        if (roleUpper === 'SUPPLIER') {
+          navigate('/supplier/dashboard');
+        } else if (roleUpper === 'BUYER') {
+          navigate('/buyer/dashboard');
+        } else if (roleUpper === 'ADMIN') {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/role-selection');
+        }
+      },
+      onError: (errMsg) => {
+        setApiError(errMsg || 'Google authentication failed.');
+      }
+    });
+  };
+
   const onSubmit = async (data) => {
-    login(
-      { email: data.email, name: data.email ? data.email.split('@')[0] : 'Enterprise User' },
-      'mock_jwt_token_sample',
-      USER_ROLES.SUPPLIER
-    );
-    navigate('/supplier/dashboard');
+    setApiError(null);
+    try {
+      const response = await authService.login(data);
+      const { user, token } = response.data;
+      const roleUpper = (user?.role || 'supplier').toUpperCase();
+      login(user, token, roleUpper);
+
+      if (roleUpper === 'SUPPLIER') {
+        navigate('/supplier/dashboard');
+      } else if (roleUpper === 'BUYER') {
+        navigate('/buyer/dashboard');
+      } else if (roleUpper === 'ADMIN') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/role-selection');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setApiError(err?.message || 'Invalid credentials or server unavailable. Please try again.');
+    }
   };
 
   return (
@@ -253,6 +295,14 @@ export const LoginPage = () => {
               </p>
             </div>
 
+            {/* Error Alert Banner */}
+            {apiError && (
+              <div className="p-2.5 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
+                <span>{apiError}</span>
+              </div>
+            )}
+
             {/* Login Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 pt-0.5">
               
@@ -335,10 +385,7 @@ export const LoginPage = () => {
               {/* Google Button */}
               <button 
                 type="button"
-                onClick={() => {
-                  login({ email: 'google.user@example.com', name: 'Google User' }, 'mock_token', USER_ROLES.SUPPLIER);
-                  navigate('/supplier/dashboard');
-                }}
+                onClick={handleGoogleLogin}
                 className="border border-slate-200 hover:bg-slate-50 text-slate-700 text-[11px] font-semibold py-2 px-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-colors shadow-xs"
               >
                 <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">

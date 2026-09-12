@@ -21,7 +21,7 @@ export const RoleSelectionPage = () => {
       badge: 'Capture & Sequestration',
       description: 'Industrial emitters, biochar producers, DAC facilities, and agro-forestry carbon projects seeking to list & monetize verified credits.',
       icon: Factory,
-      route: '/supplier/onboarding',
+      route: '/onboarding/supplier',
       color: 'border-eco-emerald hover:border-eco-emerald',
     },
     {
@@ -30,7 +30,7 @@ export const RoleSelectionPage = () => {
       badge: 'Offtake & Scope 1-3 Insetting',
       description: 'Corporations, funds, and sustainability leaders sourcing high-durability carbon removal and circular bio-feedstock.',
       icon: ShoppingBag,
-      route: '/buyer/dashboard',
+      route: '/onboarding/buyer',
       color: 'border-eco-cyan hover:border-eco-cyan',
     },
     {
@@ -39,7 +39,7 @@ export const RoleSelectionPage = () => {
       badge: 'MRV & Governance',
       description: 'Registry supervisors and verification bodies validating telemetry, sensor streams, and escrow disbursements.',
       icon: ShieldCheck,
-      route: '/admin/dashboard',
+      route: '/onboarding/admin',
       color: 'border-amber-500 hover:border-amber-500',
     },
   ];
