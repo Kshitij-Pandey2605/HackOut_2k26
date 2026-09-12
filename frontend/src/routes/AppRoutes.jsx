@@ -17,6 +17,9 @@ import RoleSelectionPage from '@/features/role-selection/pages/RoleSelectionPage
 import LoginPage from '@/features/auth/pages/LoginPage';
 import SignupPage from '@/features/auth/pages/SignupPage';
 import ForgotPasswordPage from '@/features/auth/pages/ForgotPasswordPage';
+import SupplierOnboardingPage from '@/features/supplier/pages/SupplierOnboardingPage';
+import BuyerOnboardingPage from '@/features/buyer/pages/BuyerOnboardingPage';
+import AdminOnboardingPage from '@/features/admin/pages/AdminOnboardingPage';
 import SupplierDashboardPage from '@/features/supplier/pages/SupplierDashboardPage';
 import BuyerDashboardPage from '@/features/buyer/pages/BuyerDashboardPage';
 import MatchingEnginePage from '@/features/matching-engine/pages/MatchingEnginePage';
@@ -39,20 +42,23 @@ export const AppRoutes = () => {
         <Route path="/role-selection" element={<RoleSelectionPage />} />
       </Route>
 
-      {/* 2. Authentication Flow */}
+      {/* 2. Authentication & Onboarding Flow */}
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/supplier/onboarding" element={<SupplierOnboardingPage />} />
+        <Route path="/onboarding/supplier" element={<SupplierOnboardingPage />} />
+        <Route path="/buyer/onboarding" element={<BuyerOnboardingPage />} />
+        <Route path="/onboarding/buyer" element={<BuyerOnboardingPage />} />
+        <Route path="/admin/onboarding" element={<AdminOnboardingPage />} />
+        <Route path="/onboarding/admin" element={<AdminOnboardingPage />} />
+        <Route path="/supplier/dashboard" element={<SupplierDashboardPage />} />
       </Route>
 
       {/* 3. Authenticated App Workspaces */}
       <Route element={<ProtectedRoute />}>
         <Route element={<DashboardLayout />}>
-          {/* Supplier Specific Routes */}
-          <Route element={<RoleRoute allowedRoles={[USER_ROLES.SUPPLIER, USER_ROLES.ADMIN]} />}>
-            <Route path="/supplier/dashboard" element={<SupplierDashboardPage />} />
-          </Route>
 
           {/* Buyer Specific Routes */}
           <Route element={<RoleRoute allowedRoles={[USER_ROLES.BUYER, USER_ROLES.ADMIN]} />}>

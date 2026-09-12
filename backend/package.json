@@ -1,11 +1,11 @@
 {
   "name": "carbonsphere-backend",
   "version": "1.0.0",
-  "description": "Backend API for CarbonSphere - AI-Powered Circular Carbon Exchange Ecosystem",
+  "description": "Production Backend API for CarbonSphere - AI-Powered Circular Carbon Exchange Ecosystem",
   "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/server.js",
+    "dev": "nodemon --watch src src/server.js",
     "start": "node src/server.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,19 +16,25 @@
     "circular-economy",
     "supabase",
     "express",
-    "ai-matching"
+    "jwt",
+    "google-oauth"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@supabase/supabase-js": "^2.48.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
+    "google-auth-library": "^9.15.0",
     "helmet": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.9.16",
+    "socket.io": "^4.8.3",
     "zod": "^3.24.2"
   },
   "devDependencies": {

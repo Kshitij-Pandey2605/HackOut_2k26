@@ -1,21 +1,9 @@
-import { ApiError } from '../utils/apiError.js';
-import { HTTP_STATUS } from '../constants/index.js';
+export {
+  authenticateUser,
+  authorizeRole,
+  requireVerifiedEmail
+} from '../modules/auth/auth.middleware.js';
 
-/**
- * Authentication middleware starter skeleton
- * Verifies Supabase/JWT session token on protected routes
- */
-export const authenticate = (req, res, next) => {
-  // Skeleton placeholder for JWT / Supabase auth verification
-  next();
-};
-
-/**
- * Role-based access control middleware starter skeleton
- */
-export const authorizeRoles = (...roles) => {
-  return (req, res, next) => {
-    // Skeleton placeholder for role checking
-    next();
-  };
-};
+// Aliases for convenience
+export { authenticateUser as authenticate } from '../modules/auth/auth.middleware.js';
+export { authorizeRole as authorizeRoles } from '../modules/auth/auth.middleware.js';
